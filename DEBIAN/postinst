@@ -1,0 +1,3 @@
+#!/bin/bash
+/usr/bin/docker pull tomcat:9-jre11
+/usr/bin/docker pull postgres:10

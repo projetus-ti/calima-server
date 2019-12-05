@@ -1,0 +1,10 @@
+[Desktop Entry]
+Exec="/usr/lib/calima-server/calima-server.sh"
+Name=Calima Server
+GenericName=Calima Server
+Comment=Servidor do Calima ERP Contábil
+Terminal=false
+Icon=/usr/lib/calima-server/icon.png
+Type=Application
+Categories=Office;
+StartupWMClass=CalimaServer

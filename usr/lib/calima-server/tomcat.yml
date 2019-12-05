@@ -1,0 +1,16 @@
+tomcat:
+  container_name: tomcat
+  restart: always
+  image: tomcat:9-jre11
+  ports:
+    - 8081:8080
+  links:
+    - postgres
+  environment:
+    JAVA_OPTS: -Xms1224m -Xmx2048m -Xss228k -Djdk.tls.ephemeralDHKeySize=2048 -XX:MaxGCPauseMillis=1000 -DShowLog=true -Djava.awt.headless=true -Duser.timezone=GMT-3 -Duser.language=pt -Duser.country=BR -Dcalima.datasource.url=jdbc:postgresql://postgres:5432/calima
+  volumes:
+    - ./tomcat/webapps/calima.war:/usr/local/tomcat/webapps/calima.war:ro
+    - ./tomcat/conf/context.xml:/usr/local/tomcat/conf/context.xml:ro
+    - ./tomcat/work:/usr/local/tomcat/work
+    - /dev/null:/usr/local/tomcat/webapps/ROOT/index.jsp:ro
+    - /dev/null:/usr/local/tomcat/webapps/ROOT/index.htm:ro

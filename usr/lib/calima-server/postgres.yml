@@ -1,0 +1,14 @@
+postgres:
+    container_name: postgres
+    restart: always
+    image: postgres:10
+    ports:
+        - 5432:5432
+    environment:
+        - DEBUG=false
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=masterkey
+    volumes:
+        - ./postgres/bkp:/opt/bkp
+        - ./postgres/data:/var/lib/postgresql/data
+        - ./postgres/postgresql.conf:/var/lib/postgresql/data/postgresql.conf

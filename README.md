@@ -27,3 +27,8 @@ Pacotes dependentes:
 * docker
 * docker-compose
 * gnome-terminal
+
+## Mais informações
+
+* Site do Calima ERP Contábil: https://www.calimaerp.com
+* Site da Projetus TI (mantedora): https://www.projetusti.com.br

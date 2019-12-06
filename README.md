@@ -6,7 +6,7 @@
 [![GitHub release](https://img.shields.io/github/release/projetus-ti/calima-server/all.svg)](https://github.com/projetus-ti/calima-server/releases)
 [![GitHub Release Date](https://img.shields.io/github/release-date-pre/projetus-ti/calima-server.svg)](https://github.com/projetus-ti/calima-server/releases)
 [![GitHub license](https://img.shields.io/github/license/projetus-ti/calima-server.svg)](https://github.com/projetus-ti/calima-server/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/proejtus-ti/calima-server.svg)](https://github.com/projetus-ti/calima-server/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/projetus-ti/calima-server.svg)](https://github.com/projetus-ti/calima-server/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/projetus-ti/calima-server.svg)](https://github.com/projetus-ti/calima-server/network)
 
 Servidor da aplicação Calima ERP Contábil, mantido pela Projetus TI, construído com docker e docker-compose, com uma interface de controle escrita em Zenity e Bash Script.

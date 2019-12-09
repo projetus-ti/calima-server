@@ -3,9 +3,6 @@
 # Autor: Evandro Begati e Fabiano Henrique
 # Data: 20/11/2019
 
-# Setar a versao do script (sempre mantenha \n no final)
-versao="2.0"
-
 # Setar outras variaveis
 desktop_path=$(xdg-user-dir DESKTOP)
 user_path=$(xdg-user-dir USER)

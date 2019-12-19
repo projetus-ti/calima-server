@@ -1,7 +1,7 @@
 [DEBREATE-0.7.13]
 <<CTRL>>
 Package: calima-server
-Version: 2.0.1
+Version: 2.0.2
 Maintainer: Projetus Tecnologia da Informação Ltda <contato@projetusti.com.br>
 Source: https://github.com/projetus-ti/calima-server
 Homepage: https://www.calimaerp.com
@@ -14,9 +14,8 @@ Description: Instalador do Servidor do Calima ERP Contábil
 <</CTRL>>
 <<FILES>>
 1
-/home/evandro/desenvol/calima-server/usr/share -> share -> /usr/
-/home/evandro/desenvol/calima-server/usr/share/applications/calima-server.desktop* -> calima-server.desktop -> /usr/bin
 /home/evandro/desenvol/calima-server/usr/lib/calima-server -> calima-server -> /usr/lib
+/home/evandro/desenvol/calima-server/usr/share -> share -> /usr/
 <</FILES>>
 <<SCRIPTS>>
 <<PREINST>>
@@ -26,7 +25,7 @@ Description: Instalador do Servidor do Calima ERP Contábil
 <<POSTINST>>
 1
 #!/bin/bash
-/usr/bin/docker pull tomcat:9-jre11
+/usr/bin/docker pull tomcat:9-jdk11-adoptopenjdk-openj9
 /usr/bin/docker pull postgres:10
 <</POSTINST>>
 <<PRERM>>
@@ -38,6 +37,11 @@ Description: Instalador do Servidor do Calima ERP Contábil
 <</SCRIPTS>>
 <<CHANGELOG>>
 <<DEST>>DEFAULT<</DEST>>
+calima-server (2.0.2) bionic; urgency=low
+
+  * Alterado a base do java para o AdoptoOpenJDK
+
+ -- Projetus Tecnologia da Informação Ltda <contato@projetusti.com.br>  Thu, 19 Dec 2019 18:56:09 -0300
 
 <</CHANGELOG>>
 <<COPYRIGHT>>

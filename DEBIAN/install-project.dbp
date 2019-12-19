@@ -1,7 +1,7 @@
 [DEBREATE-0.7.13]
 <<CTRL>>
 Package: calima-server
-Version: 2.0.2
+Version: 2.0.3
 Maintainer: Projetus Tecnologia da Informação Ltda <contato@projetusti.com.br>
 Source: https://github.com/projetus-ti/calima-server
 Homepage: https://www.calimaerp.com
@@ -37,7 +37,7 @@ Description: Instalador do Servidor do Calima ERP Contábil
 <</SCRIPTS>>
 <<CHANGELOG>>
 <<DEST>>DEFAULT<</DEST>>
-calima-server (2.0.2) bionic; urgency=low
+calima-server (2.0.3) bionic; urgency=low
 
   * Alterado a base do java para o AdoptoOpenJDK
 

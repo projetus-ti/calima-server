@@ -17,14 +17,13 @@ fi
  (
   echo "10" ; sleep 1
   echo "# Parando os serviços..."
-  $app_path/parar.sh
+  $app_path/stop.sh
   echo "50" ; sleep 1
   echo "# Efetuando o download da atualização..."
-  FILE=./tomcat/webapps/calima.war
-  download "$url" "./tomcat/webapps/calima.war"
+  download "$url" "$user_path/.calima-server/tomcat/webapps/calima.war"
   echo "70" ; sleep 1
   echo "# Reiniciando serviços..."  
-  $app_path/iniciar.sh
+  $app_path/start.sh
   echo "# Processo concluído!" ; sleep 1
   echo "100" ; sleep 1
     ) |

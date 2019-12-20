@@ -6,5 +6,5 @@ Comment=Servidor do Calima ERP Contábil
 Terminal=false
 Icon=/usr/lib/calima-server/icon.png
 Type=Application
-Categories=Office;
+Categories=Office; 
 StartupWMClass=CalimaServer

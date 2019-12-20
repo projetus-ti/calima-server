@@ -24,10 +24,10 @@ source /usr/lib/calima-server/funcoes.sh
 
   echo "10" ; 
   echo "# Parando o servidor..."
-  $app_path/parar.sh
+  $app_path/stop.sh
   echo "20" ; 
   echo "# Verificando o arquivo selecionado..."
-  cp -f "$bkpfile" /usr/lib/calima-server/postgres/bkp/restaurar.backup
+  cp -f "$bkpfile" ~/.calima-server/postgres/bkp/restaurar.backup
   echo "30" ; 
   echo "# Matando as conexões ao Postgres..."
   /usr/bin/docker exec -it postgres psql -U postgres -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'calima';"
@@ -43,14 +43,14 @@ source /usr/lib/calima-server/funcoes.sh
   gnome-terminal --title='Calima Server - Processo de Restauração do Banco' --wait --hide-menubar --window --command "/usr/bin/docker exec -t postgres sh -c 'pg_restore -U postgres -v --dbname calima /opt/bkp/restaurar.backup'">/dev/null
  
   echo "# Verificando o arquivo war..."
-  FILE=$app_path/tomcat/webapps/calima.war
+  FILE=$user_path/.calima-server/tomcat/webapps/calima.war
   if [ ! -f "$FILE" ]; then
-    download "https://download.projetusti.com.br/calima/java8/calima.war" "$app_path/tomcat/webapps/calima.war"
+    download "https://download.projetusti.com.br/calima/java8/calima.war" $FILE
   fi
   echo "# Banco restaurado com sucesso!" ; 
   echo "90" ;
   echo "# Inicializando o Calima Server..." ; sleep 1
-  $app_path/iniciar.sh
+  $app_path/start.sh
   echo "# Processo de inicialização executado com êxito!" ; sleep 1
   echo "100" ; sleep 1
 

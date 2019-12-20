@@ -17,10 +17,10 @@ if [ ! -d ~/.calima-server/tomcat -a ! -d ~/.calima-server/postgres ] ; then
     (
       echo "10" 
       echo "# Copiando arquivos Tomcat..."
-      cp -rf /usr/lib/calima-server/tomcat  ~/.calima-server/
+      cp -rf /usr/lib/calima-server/tomcat  ~/.calima-server
       echo "50"
       echo "# Copiando arquivos Postgres..."
-      cp -rf /usr/lib/calima-server/postgres  ~/.calima-server/
+      cp -rf /usr/lib/calima-server/postgres  ~/.calima-server
       echo "100"
       echo "# Copia conclúida..."
       sleep 1
@@ -127,8 +127,8 @@ checkReboot(){
       --text="\nComputador precisa ser reiniciado para que o Calima Server funcione corretamente!"
       exit -1 
     else
-      zenity --info --height="50" --width="150" --class=CalimaServer \
-             --text="Reinicio identificado!"
+      #zenity --info --height="50" --width="150" --class=CalimaServer \
+      #       --text="Reinicio identificado!"
       rm -rf ~/.calima-server/reiniciar.ini
     fi
   fi
@@ -278,6 +278,7 @@ showNotification(){
 }
 
 executar() {
+  cd ~/.calima-server
   response=$($1) | zenity --progress --class=CalimaServer --text="$2" --pulsate --class=CalimaServer --no-cancel --auto-close --title "Calima Server"
   echo $response
 }

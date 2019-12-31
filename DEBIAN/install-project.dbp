@@ -1,21 +1,21 @@
 [DEBREATE-0.7.13]
 <<CTRL>>
 Package: calima-server
-Version: 2.0.3
+Version: 2.0.4
 Maintainer: Projetus Tecnologia da Informação Ltda <contato@projetusti.com.br>
 Source: https://github.com/projetus-ti/calima-server
 Homepage: https://www.calimaerp.com
 Architecture: all
 Priority: optional
-Depends: docker-compose, docker.io, gnome-terminal
+Depends: docker-compose, docker.io, gnome-terminal, zenity
 Description: Instalador do Servidor do Calima ERP Contábil
  Pacote de instalação do servidor do sistema para distribuições baseadas no Ubuntu 18.04 ou superiores (não testado em outras).
 
 <</CTRL>>
 <<FILES>>
 1
-/home/evandro/desenvol/calima-server/usr/lib/calima-server -> calima-server -> /usr/lib
 /home/evandro/desenvol/calima-server/usr/share -> share -> /usr/
+/home/evandro/desenvol/calima-server/usr/lib/calima-server -> calima-server -> /usr/lib
 <</FILES>>
 <<SCRIPTS>>
 <<PREINST>>
@@ -37,9 +37,10 @@ Description: Instalador do Servidor do Calima ERP Contábil
 <</SCRIPTS>>
 <<CHANGELOG>>
 <<DEST>>DEFAULT<</DEST>>
-calima-server (2.0.3) bionic; urgency=low
+calima-server (2.0.4) bionic; urgency=low
 
-  * Alterado a base do java para o AdoptoOpenJDK
+  * Correção de vários problemas de path
+  * Porta do postgres trocada para 5433, para evitar conflito com instalações existentes
 
  -- Projetus Tecnologia da Informação Ltda <contato@projetusti.com.br>  Thu, 19 Dec 2019 18:56:09 -0300
 

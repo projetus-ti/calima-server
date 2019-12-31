@@ -16,7 +16,7 @@ cd $app_path
 
   acao=$(zenity  --list  --text "Selecione a ação desejada:" \
     --radiolist \
-    --window-icon=/opt/projetus/facilitador/icon.png \
+    --window-icon=/usr/lib/calima-server/icon.png \
     --class=CalimaServer \
     --title="Calima Server - v2.0.5" \
     --height="300" --width="280" \

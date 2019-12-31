@@ -29,8 +29,9 @@ fi
     ) |
 
     zenity --progress --auto-close  --no-cancel \
+    --window-icon=/usr/lib/calima-server/icon.png \
     --height="100" --width="350" \
-    --class=CalimaServer
+    --class=CalimaServer \
     --title="Calima Server" \
     --text="Atualiação em andamento. Por favor, aguarde!" \
     --percentage=0

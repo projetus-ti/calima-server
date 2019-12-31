@@ -28,6 +28,7 @@ if [ ! -d ~/.calima-server/tomcat -a ! -d ~/.calima-server/postgres ] ; then
 
     zenity --progress --auto-close --no-cancel \
     --height="100" --width="350" \
+    --window-icon=/usr/lib/calima-server/icon.png \
     --class=CalimaServer \
     --title="Calima Serve" \
     --text="Copiando arquivos, aguarde..." \
@@ -123,6 +124,7 @@ checkReboot(){
     if [ $reiniciado == $vezes ] ; 
     then
       zenity --info --class=CalimaServer\
+      --window-icon=/usr/lib/calima-server/icon.png \
       --height="50" --width="500" \
       --text="\nComputador precisa ser reiniciado para que o Calima Server funcione corretamente!"
       exit -1 
@@ -220,6 +222,7 @@ checkUser(){
     
     executar "pkexec adduser -a "$usr" docker" "Dando permissão ao usuário atual..."
     zenity --info \
+    --window-icon=/usr/lib/calima-server/icon.png \
     --height="120" --width="600" \
     --text="Foi dada permissão ao seu usuário para poder executar algumas ações principais do Calima Server.\nPor isso, se faz necessário reinciar o computador.\nPor favor reinicie o computador para que funcione todas as funções do Calima Server."
     exit -1
@@ -257,7 +260,7 @@ download() {
   wget_info=`ps ax |grep "wget.*$1" |awk '{print $1"|"$2}'`
   wget_pid=`echo $wget_info|cut -d'|' -f1 `
  
-  zenity --class=CalimaServer --progress --auto-close --auto-kill --text="Efetuando o download do arquivo: $1\n\n" --width="500" --title "Calima Server"< $pipe
+  zenity --class=CalimaServer --progress --auto-close --window-icon=/usr/lib/calima-server/icon.png --auto-kill --text="Efetuando o download do arquivo: $1\n\n" --width="500" --title "Calima Server"< $pipe
   if [ "`ps -A |grep "$wget_pid"`" ];then
     kill $wget_pid
   fi
@@ -266,19 +269,19 @@ download() {
 }
 
 showMessage() {
-    zenity --class=CalimaServer --info --icon-name='dialog-warning' --title "Calima Server" \
+    zenity --class=CalimaServer --window-icon=/usr/lib/calima-server/icon.png --info --icon-name='dialog-warning' --title "Calima Server" \
          --text "$1" \
          --height="50" --width="450"
 }
 
 showNotification(){
-  zenity --class=CalimaServer --notification --icon-name='dialog-warning' --title "Calima Server" \
+  zenity --class=CalimaServer --window-icon=/usr/lib/calima-server/icon.png --notification --icon-name='dialog-warning' --title "Calima Server" \
          --text "$1" \
          --height="50" --width="600"
 }
 
 executar() {
   cd ~/.calima-server
-  response=$($1) | zenity --progress --class=CalimaServer --text="$2" --pulsate --class=CalimaServer --no-cancel --auto-close --title "Calima Server"
+  response=$($1) | zenity --progress --window-icon=/usr/lib/calima-server/icon.png --class=CalimaServer --text="$2" --pulsate --class=CalimaServer --no-cancel --auto-close --title "Calima Server"
   echo $response
 }

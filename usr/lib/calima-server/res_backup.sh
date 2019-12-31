@@ -10,7 +10,8 @@ source /usr/lib/calima-server/funcoes.sh
 
       if [ $? = 1 ] ; then
             zenity --question\
-                --class=CalimaServer
+                --class=CalimaServer\
+                --window-icon=/usr/lib/calima-server/icon.png\
                 --text="Deseja selecionar um arquivo?"\
                 --height="50" --width="200"
             novoArquivo=$?
@@ -58,6 +59,7 @@ source /usr/lib/calima-server/funcoes.sh
 
     zenity --progress --auto-close --no-cancel \
     --height="100" --width="350" \
+    --window-icon=/usr/lib/calima-server/icon.png \
     --class=CalimaServer \
     --title="Calima Server" \
     --text="Restauração em andamento, aguarde..." \

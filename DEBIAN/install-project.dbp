@@ -1,7 +1,7 @@
 [DEBREATE-0.7.13]
 <<CTRL>>
 Package: calima-server
-Version: 2.0.4
+Version: 2.0.5
 Maintainer: Projetus Tecnologia da Informação Ltda <contato@projetusti.com.br>
 Source: https://github.com/projetus-ti/calima-server
 Homepage: https://www.calimaerp.com
@@ -14,8 +14,8 @@ Description: Instalador do Servidor do Calima ERP Contábil
 <</CTRL>>
 <<FILES>>
 1
-/home/evandro/desenvol/calima-server/usr/share -> share -> /usr/
 /home/evandro/desenvol/calima-server/usr/lib/calima-server -> calima-server -> /usr/lib
+/home/evandro/desenvol/calima-server/usr/share -> share -> /usr/
 <</FILES>>
 <<SCRIPTS>>
 <<PREINST>>
@@ -37,13 +37,9 @@ Description: Instalador do Servidor do Calima ERP Contábil
 <</SCRIPTS>>
 <<CHANGELOG>>
 <<DEST>>DEFAULT<</DEST>>
-calima-server (2.0.4) bionic; urgency=low
+calima-server (2.0.5) bionic; urgency=low
 
-  * Correção de vários problemas de path
-  * Porta do postgres trocada para 5433, para evitar conflito com instalações existentes
-
- -- Projetus Tecnologia da Informação Ltda <contato@projetusti.com.br>  Thu, 19 Dec 2019 18:56:09 -0300
-
+  * Adicionado o icone do sistema na barra de titulo da janela.
 <</CHANGELOG>>
 <<COPYRIGHT>>
 GNU GENERAL PUBLIC LICENSE

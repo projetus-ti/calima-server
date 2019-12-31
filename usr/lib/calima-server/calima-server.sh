@@ -18,7 +18,7 @@ cd $app_path
     --radiolist \
     --window-icon=/opt/projetus/facilitador/icon.png \
     --class=CalimaServer \
-    --title="Calima Server - v2.0.4" \
+    --title="Calima Server - v2.0.5" \
     --height="300" --width="280" \
     --column "" \
     --column "Ação" \

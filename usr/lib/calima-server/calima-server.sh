@@ -17,7 +17,7 @@ cd $app_path
   acao=$(zenity  --list  --text "Selecione a ação desejada:" \
     --radiolist \
     --class=CalimaServer \
-    --title="Calima Server" \
+    --title="Calima Server - v2.0.4" \
     --height="300" --width="280" \
     --column "" \
     --column "Ação" \

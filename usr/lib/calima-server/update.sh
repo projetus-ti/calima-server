@@ -6,12 +6,12 @@
 source /usr/lib/calima-server/funcoes.sh
 
 if [ "$1" = "normal" ] ; then
-  url="https://download.projetusti.com.br/calima/java8/calima.war"
+  url="docker pull projetusti/calima:stable"
 fi
 
 
 if [ "$1" = "canary" ] ; then
-  url="https://download.projetusti.com.br/calima/canary/calima.war"
+  url="docker pull projetusti/calima:canary"
 fi
 
  (
@@ -20,7 +20,7 @@ fi
   $app_path/stop.sh
   echo "50" ; sleep 1
   echo "# Efetuando o download da atualização..."
-  download "$url" "$user_path/.calima-server/tomcat/webapps/calima.war"
+  executar "$url"
   echo "70" ; sleep 1
   echo "# Reiniciando serviços..."  
   $app_path/start.sh

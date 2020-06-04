@@ -5,10 +5,36 @@
 
 source /usr/lib/calima-server/funcoes.sh
 
-FILE=$user_path/.calima-server/tomcat/webapps/calima.war
-if [ ! -f "$FILE" ]; then
-    download "https://download.projetusti.com.br/calima/java8/calima.war" "$FILE"
+docker=$1
+cd /usr/lib/calima-server/
+
+if [ "$docker" == "stable" ] ; then
+    echo $'#!/bin/bash
+    cp /usr/lib/calima-server/docker-compose.yml ~/.calima-server/
+    cd ~/.calima-server/
+    docker system prune -a --force
+    docker-compose down --remove-orphans
+    docker pull projetusti/calima:stable
+    docker-compose up -d calima_stable'>$user_path/.calima-server/exec.sh
+    chmod +x $user_path/.calima-server/exec.sh
+    sleep 1
+    executar "$user_path/.calima-server/exec.sh" "Iniciando Calima Corrente, aguarde..."
 fi
 
-executar "/usr/bin/docker-compose -f $app_path/postgres.yml -f $app_path/tomcat.yml up -d --remove-orphans" "Iniciando o servidor, aguarde..."
+if [ "$docker" == "canary" ] ; then
+    echo $'#!/bin/bash
+    cp /usr/lib/calima-server/docker-compose.yml ~/.calima-server/
+    cd ~/.calima-server/
+    docker system prune -a --force
+    docker-compose down --remove-orphans
+    docker pull projetusti/calima:canary
+    docker-compose up -d calima_canary'>$user_path/.calima-server/exec.sh
+    chmod +x $user_path/.calima-server/exec.sh
+    sleep 1
+    executar "$user_path/.calima-server/exec.sh" "Iniciando Calima Canary, aguarde..."
+fi
+
+
+
+
 showNotification "Servidor iniciado com sucesso!"

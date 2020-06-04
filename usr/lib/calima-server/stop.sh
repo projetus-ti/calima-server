@@ -6,8 +6,10 @@
 source /usr/lib/calima-server/funcoes.sh
 
 echo $'#!/bin/bash 
-/usr/bin/docker stop tomcat 
-/usr/bin/docker rm tomcat'>$user_path/.calima-server/exec.sh
+docker-compose stop calima_stable
+docker-compose rm -f calima_stable
+docker-compose stop calima_canary
+docker-compose rm -f calima_canary'>$user_path/.calima-server/exec.sh
 chmod +x $user_path/.calima-server/exec.sh
 sleep 1
 executar "$user_path/.calima-server/exec.sh" "Parando o servidor, aguarde..."

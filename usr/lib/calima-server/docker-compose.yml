@@ -1,0 +1,38 @@
+calima_canary:
+  container_name: calima_canary
+  environment:
+    JAVA_OPTS: -Dcalima.datasource.url=jdbc:postgresql://postgres_calima:5432/calima
+  image: projetusti/calima:canary
+  links:
+    - postgres_calima
+  ports:
+    - 8081:8080
+  restart: always
+  volumes:
+    - ~/.calima-server/tomcat/work:/usr/local/tomcat/work
+calima_stable:
+  container_name: calima_stable
+  environment:
+    JAVA_OPTS: -Dcalima.datasource.url=jdbc:postgresql://postgres_calima:5432/calima
+  image: projetusti/calima:stable
+  links:
+    - postgres_calima
+  ports:
+    - 8081:8080
+  restart: always
+  volumes:
+    - ~/.calima-server/tomcat/work:/usr/local/tomcat/work
+postgres_calima:
+    container_name: postgres_calima
+    ports: 
+      - 5433:5432
+    environment:
+      - DEBUG=false
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=masterkey
+    image: postgres:10-alpine
+    restart: always
+    volumes:
+      - ~/.calima-server/postgres/bkp:/opt/bkp
+      - ~/.calima-server/postgres/data:/var/lib/postgresql/data
+      

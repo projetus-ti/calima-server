@@ -282,6 +282,7 @@ showNotification(){
 
 executar() {
   cd ~/.calima-server
+  echo $1
   response=$($1) | zenity --progress --window-icon=/usr/lib/calima-server/icon.png --class=CalimaServer --text="$2" --pulsate --class=CalimaServer --no-cancel --auto-close  --width="280" --title "Calima Server"
   echo $response
 }

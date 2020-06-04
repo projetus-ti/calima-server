@@ -22,10 +22,9 @@ cd $app_path
     --height="300" --width="280" \
     --column "" \
     --column "Ação" \
-    TRUE  "Iniciar o Servidor" \
+    TRUE  "Iniciar o Servidor Versão Corrente"\
+    FALSE "Iniciar o Servidor Versão Canary"\
     FALSE "Parar o Servidor"\
-    FALSE "Atualizar Versão Corrente"\
-    FALSE "Atualizar Versão Canary"\
     FALSE "Status dos Serviços"\
     FALSE "Log do Sistema"\
     FAlSE "Restaurar Backup"\
@@ -35,8 +34,13 @@ cd $app_path
     exit 0
   fi
 
-  if [ "$acao" = "Iniciar o Servidor" ] ; then
-    $app_path/start.sh
+  if [ "$acao" = "Iniciar o Servidor Versão Corrente" ] ; then
+    $app_path/start.sh "stable"
+    $app_path/calima-server.sh
+  fi
+
+  if [ "$acao" = "Iniciar o Servidor Versão Canary" ] ; then
+    $app_path/start.sh "canary"
     $app_path/calima-server.sh
   fi
 

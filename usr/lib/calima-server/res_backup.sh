@@ -3,26 +3,17 @@
 # Autor: Evandro Begati e Fabiano Henrique
 # Data: 21/11/2019
 
+# Dependencias
 source /usr/lib/calima-server/funcoes.sh
 
-FILE=~/.calima-server/docker-compose.yml
-if [ ! -f "$FILE" ]; then
-  cp -f /usr/lib/calima-server/docker-compsoe.yml ~/.calima-server
-fi
+bkpfile=""
 
-echo $'#!/bin/bash
-  cd ~/.calima-server/
-  docker-compose up -d postgres_calima'>$user_path/.calima-server/exec.sh
-  chmod +x $user_path/.calima-server/exec.sh
-  sleep 1
-  executar "$user_path/.calima-server/exec.sh" "Iniciando Postgres, aguarde..."
-
-
-cd ~/.calima-server
-
-  bkpfile=""
+if [ "$1" == "Referencial" ] ; then
+  bkpfile="$user_path/.calima-server/backup/calima.backup"
+else 
   bkpfile=$(zenity --file-selection --class=CalimaServer --title="Selecione o Arquivo de Backup"  --file-filter='Backup do PostgreSQL (.backup) | *.backup' )
-
+fi
+  
       if [ $? = 1 ] ; then
             zenity --question\
                 --class=CalimaServer\
@@ -41,7 +32,7 @@ cd ~/.calima-server
 
   echo "10" ; 
   echo "# Parando o servidor..."
-  $app_path/stop.sh
+  /usr/bin/docker stop tomcat_calima
   echo "20" ; 
   echo "# Verificando o arquivo selecionado..."
   rm -rf ~/.calima-server/postgres/bkp/*.*
@@ -58,10 +49,14 @@ cd ~/.calima-server
   
   echo "60" ; 
   echo "# Restaurando o banco selecionado..."
-  gnome-terminal --title='Calima Server - Processo de Restauração do Banco' --wait --hide-menubar --window --command "/usr/bin/docker exec -t postgres_calima sh -c 'pg_restore -U postgres -v --dbname calima /opt/bkp/restaurar.backup'">/dev/null
-  echo "# Banco restaurado com sucesso!" ; 
+  
+
+  cmdDocker="/usr/bin/docker exec -t postgres_calima sh -c 'pg_restore -U postgres -v --dbname calima /opt/bkp/restaurar.backup'"
+  gnome-terminal --title='Calima Server - Processo de Restauração do Banco' --wait --hide-menubar --window --command "$cmdDocker">/dev/null
+  echo "# Iniciando o Tomcat, aguarde..." ; 
+  /usr/bin/docker start tomcat_calima
   echo "90" ;
-  echo "# Processo de inicialização executado com êxito!" ; sleep 1
+  echo "# Processo concluído com sucesso." ; sleep 1
   echo "100" ; sleep 1
 
   ) |
@@ -75,26 +70,6 @@ cd ~/.calima-server
     --percentage=0
 
   showNotification "Restauração do banco de dados concluída!"
-
-  acao=$(zenity  --list  --text "Deseja iniciar esse banco em qual versão ?" \
-    --radiolist \
-    --window-icon=/usr/lib/calima-server/icon.png \
-    --class=CalimaServer \
-    --title="Calima Server - v2.0.5" \
-    --height="200" --width="280" \
-    --column "" \
-    --column "Ação" \
-    TRUE  "Versão Corrente"\
-    FALSE "Versão Canary");
-
-  if [ "$acao" == "Versão Corrente" ] ; then
-    exec $app_path/start.sh stable  
-  fi
-
-  if [ "$acao" == "Versão Canary" ] ; then
-    exec $app_path/start.sh canary
-  fi
-
 
   showMessage "Restauração do banco concluída mas o servidor ainda está inciando.\nEm 2 minutos, abra no browser o endereço: http://localhost:8081/calima"
 

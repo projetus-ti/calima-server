@@ -1,21 +1,21 @@
 [DEBREATE-0.7.13]
 <<CTRL>>
 Package: calima-server
-Version: 2.0.5
+Version: 3.0.0
 Maintainer: Projetus Tecnologia da Informação Ltda <contato@projetusti.com.br>
 Source: https://github.com/projetus-ti/calima-server
 Homepage: https://www.calimaerp.com
 Architecture: all
 Priority: optional
-Depends: docker-compose, docker.io, gnome-terminal, zenity
+Depends: docker-compose, docker.io, gnome-terminal, zenity, git
 Description: Instalador do Servidor do Calima ERP Contábil
  Pacote de instalação do servidor do sistema para distribuições baseadas no Ubuntu 18.04 ou superiores (não testado em outras).
 
 <</CTRL>>
 <<FILES>>
 1
-/home/evandro/desenvol/calima-server/usr/lib/calima-server -> calima-server -> /usr/lib
-/home/evandro/desenvol/calima-server/usr/share -> share -> /usr/
+/media/fabiano/HD_Dados/desenvol/calima-server/usr/share -> share -> /usr/
+/media/fabiano/HD_Dados/desenvol/calima-server/usr/lib/calima-server -> calima-server -> /usr/lib
 <</FILES>>
 <<SCRIPTS>>
 <<PREINST>>
@@ -25,8 +25,8 @@ Description: Instalador do Servidor do Calima ERP Contábil
 <<POSTINST>>
 1
 #!/bin/bash
-/usr/bin/docker pull tomcat:9-jdk11-adoptopenjdk-openj9
-/usr/bin/docker pull postgres:10
+/usr/bin/docker pull projetusti/calima:stable
+/usr/bin/docker pull postgres:10-alpine
 <</POSTINST>>
 <<PRERM>>
 0
@@ -37,9 +37,10 @@ Description: Instalador do Servidor do Calima ERP Contábil
 <</SCRIPTS>>
 <<CHANGELOG>>
 <<DEST>>DEFAULT<</DEST>>
-calima-server (2.0.5) bionic; urgency=low
+calima-server (3.0.0) bionic; urgency=low
 
-  * Adicionado o icone do sistema na barra de titulo da janela.
+  * Adicionado versao testing
+  * Reconstruido o Calima Server para utilizar imagens docker da infra v2
 <</CHANGELOG>>
 <<COPYRIGHT>>
 GNU GENERAL PUBLIC LICENSE

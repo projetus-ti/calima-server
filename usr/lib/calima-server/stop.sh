@@ -3,16 +3,18 @@
 # Autor: Evandro Begati e Fabiano Henrique
 # Data: 21/11/2019
 
+# Dependencias
 source /usr/lib/calima-server/funcoes.sh
 
-echo $'#!/bin/bash 
-docker-compose stop calima_stable
-docker-compose rm -f calima_stable
-docker-compose stop calima_canary
-docker-compose rm -f calima_canary'>$user_path/.calima-server/exec.sh
-chmod +x $user_path/.calima-server/exec.sh
-sleep 1
-executar "$user_path/.calima-server/exec.sh" "Parando o servidor, aguarde..."
+# Criar script para execucao da acao
+echo $'#!/bin/bash
+docker-compose -f /usr/lib/calima-server/docker-compose.yml down --remove-orphans'>$user_path/.calima-server/exec.sh
 
-showNotification "Servidor finalizado com sucesso!"
-rm -rf $user_path/.calima-server/exec.sh
+# Dar permissao de execucao ao script
+chmod +x $user_path/.calima-server/exec.sh
+
+# Executar script
+executar "$user_path/.calima-server/exec.sh" "Parando os serviços, aguarde..."
+
+# Notificar o usuario
+showNotification "Calima finalizado com sucesso!"

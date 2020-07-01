@@ -1,10 +1,10 @@
 Package: calima-server
-Version: 2.0.4
+Version: 3.0.0
 Maintainer: Projetus Tecnologia da Informação Ltda <contato@projetusti.com.br>
 Source: https://github.com/projetus-ti/calima-server
 Homepage: https://www.calimaerp.com
 Architecture: all
 Priority: optional
-Depends: docker-compose, docker.io, gnome-terminal, zenity
+Depends: docker-compose, docker.io, gnome-terminal, zenity, git
 Description: Instalador do Servidor do Calima ERP Contábil
  Pacote de instalação do servidor do sistema para distribuições baseadas no Ubuntu 18.04 ou superiores (não testado em outras).

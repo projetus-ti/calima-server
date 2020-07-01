@@ -231,43 +231,6 @@ checkUser(){
   fi
 }
 
-
-
-download() {
-  cd $app_path
-  rm -Rf $2
-  rand="$RANDOM `date`"
-  pipe="/tmp/pipe.`echo '$rand' | md5sum | tr -d ' -'`"
-  mkfifo $pipe
-  wget -c $1 --no-check-certificate -O $2 2>&1 | while read data;do
-    if [ "`echo $data | grep '^Tamanho:'`" ]; then
-      total_size=`echo $data | grep "^Tamanho:" | sed 's/.*\((.*)\).*/\1/' |  tr -d '()'`
-    fi
-    if  [ "`echo $data | grep '^Length:'`" ]; then
-      total_size=`echo $data | grep "^Length:" | sed 's/.*\((.*)\).*/\1/' |  tr -d '()'`
-    fi
-
-    if [ "`echo $data | grep '[0-9]*%' `" ];then
-      percent=`echo $data | grep -o "[0-9]*%" | tr -d '%'`
-      current=`echo $data | grep "[0-9]*%" | sed 's/\([0-9BKMG.]\+\).*/\1/' `
-      speed=`echo $data | grep "[0-9]*%" | sed 's/.*\(% [0-9BKMG.]\+\).*/\1/' | tr -d ' %'`
-      remain=`echo $data | grep -o "[0-9A-Za-z]*$" `
-      echo $percent
-      echo "#Baixando: $1\n\n$current de $total_size ($percent%)\n\nTempo estimado: $remain"
-    fi
-  done > $pipe &
- 
-  wget_info=`ps ax |grep "wget.*$1" |awk '{print $1"|"$2}'`
-  wget_pid=`echo $wget_info|cut -d'|' -f1 `
- 
-  zenity --class=CalimaServer --progress --auto-close --window-icon=/usr/lib/calima-server/icon.png --auto-kill --text="Efetuando o download do arquivo: $1\n\n" --width="500" --title "Calima Server"< $pipe
-  if [ "`ps -A |grep "$wget_pid"`" ];then
-    kill $wget_pid
-  fi
-  rm -f $pipe
-  rm -Rf $app_path/wget-log*
-}
-
 showMessage() {
     zenity --class=CalimaServer --window-icon=/usr/lib/calima-server/icon.png --info --icon-name='dialog-warning' --title "Calima Server" \
          --text "$1" \
@@ -283,6 +246,7 @@ showNotification(){
 executar() {
   cd ~/.calima-server
   echo $1
-  response=$($1) | zenity --progress --window-icon=/usr/lib/calima-server/icon.png --class=CalimaServer --text="$2" --pulsate --class=CalimaServer --no-cancel --auto-close  --width="280" --title "Calima Server"
+  response=$($1) | zenity --progress --window-icon=/usr/lib/calima-server/icon.png --class=CalimaServer --text="$2" --pulsate --class=CalimaServer --no-cancel --auto-close  --width="350" --title "Calima Server"
   echo $response
 }
+
